@@ -1,0 +1,22 @@
+version: "3.7"
+services:
+  go-gin-payment:
+    image: registry.xxx.com/go-gin-payment:latest
+    restart: always
+    hostname: go-gin-payment
+    env_file:
+      - docker.env
+    environment:
+      HOST_IP: ${HOST_IP}
+    ports:
+      - "5011:5011" # api
+    networks:
+      - backend
+    volumes:
+      - /var/log/fest:/var/log/go-gin-payment
+      - /mnt/cert:/mnt/cert:ro # 证书需要由deployment/certs先部署
+
+networks:
+  backend:
+    name: fest_network
+    driver: bridge

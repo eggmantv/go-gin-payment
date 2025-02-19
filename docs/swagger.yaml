@@ -1,0 +1,66 @@
+externalDocs:
+  description: 更多专题请查看蛋人网eggman.tv
+  url: https://eggman.tv
+host: localhost:5011
+info:
+  contact:
+    email: service@eggman.tv
+    name: API Support
+    url: http://www.swagger.io/support
+  description: This is a sample server celler server.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.htm
+  termsOfService: http://swagger.io/terms/
+  title: Go Gin Payment API
+  version: "1.0"
+paths:
+  /wechat/native_pay:
+    post:
+      consumes:
+      - application/json
+      description: 获取二维码
+      parameters:
+      - description: 店铺ID，我们内部的模型ID，用于标识店铺
+        in: formData
+        name: store_id
+        required: true
+        type: string
+      - description: 支付账号ID，我们内部的模型ID，用于标识支付账号。
+        in: formData
+        name: payment_account_id
+        required: true
+        type: string
+      - description: 商户系统内部订单号，由我们自己随机生成，要求6-32个字符内，只能是数字、大小写字母_-|* 且在同一个商户号下唯一。
+        in: formData
+        name: trans_no
+        required: true
+        type: string
+      - description: 应用ID，微信公众号、小程序的app_id。
+        in: formData
+        name: app_id
+        required: true
+        type: string
+      - description: 商品信息描述。
+        in: formData
+        name: desp
+        required: true
+        type: string
+      - description: 商品总金额，单位为分
+        in: formData
+        name: total_price
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"status": "ok", "data": {"code_url": "weixin://wxpay/bizpayurl?pr=YoETTdkz1"}}'
+          schema:
+            type: string
+        "500":
+          description: '{"status": "error", "error": "error message"}'
+          schema:
+            type: string
+      summary: 生成支付二维码接口
+swagger: "2.0"

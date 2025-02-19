@@ -1,0 +1,95 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is a sample server celler server.",
+        "title": "Go Gin Payment API",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "name": "API Support",
+            "url": "http://www.swagger.io/support",
+            "email": "service@eggman.tv"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.htm"
+        },
+        "version": "1.0"
+    },
+    "host": "localhost:5011",
+    "paths": {
+        "/wechat/native_pay": {
+            "post": {
+                "description": "获取二维码",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "生成支付二维码接口",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "店铺ID，我们内部的模型ID，用于标识店铺",
+                        "name": "store_id",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "支付账号ID，我们内部的模型ID，用于标识支付账号。",
+                        "name": "payment_account_id",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "商户系统内部订单号，由我们自己随机生成，要求6-32个字符内，只能是数字、大小写字母_-|* 且在同一个商户号下唯一。",
+                        "name": "trans_no",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "应用ID，微信公众号、小程序的app_id。",
+                        "name": "app_id",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "商品信息描述。",
+                        "name": "desp",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "商品总金额，单位为分",
+                        "name": "total_price",
+                        "in": "formData",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"status\": \"ok\", \"data\": {\"code_url\": \"weixin://wxpay/bizpayurl?pr=YoETTdkz1\"}}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "{\"status\": \"error\", \"error\": \"error message\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "externalDocs": {
+        "description": "更多专题请查看蛋人网eggman.tv",
+        "url": "https://eggman.tv"
+    }
+}

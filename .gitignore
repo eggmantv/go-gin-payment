@@ -1,0 +1,10 @@
+main
+pkg
+*.log
+debug
+vendor
+*.DS_Store
+logs
+*.pid
+/cmd-*
+.vscode
