@@ -36,3 +36,7 @@ go test -v ./jobs/api
 # 然后使用./docker-deploy.sh远程拉取并启动容器
 ./docker-deploy.sh
 ```
+
+## 代码讲解
+
+[https://eggman.tv/c/s-golang-gin](https://eggman.tv/c/s-golang-gin)
